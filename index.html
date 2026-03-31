@@ -58,8 +58,30 @@
     letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--gold);
-    margin-bottom: 20px;
+    margin-bottom: 16px;
   }
+
+  .hero-brand {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5vw, 58px);
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .hero-title-small {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(22px, 3.5vw, 40px);
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    line-height: 1;
+    margin-bottom: 14px;
+  }
+
+  .hero-title-small span { color: var(--gold); }
 
   .hero h1 {
     font-family: 'Cormorant Garamond', serif;
@@ -501,7 +523,8 @@
 <!-- ── Hero ── -->
 <div class="hero">
   <div class="hero-eyebrow">You are warmly invited</div>
-  <h1>i<span>Connect</span> 2026</h1>
+  <div class="hero-brand">China Mobile International</div>
+  <h1 class="hero-title-small">i<span>Connect</span> 2026</h1>
   <p class="hero-subtitle">Padel & Cocktail Evening</p>
   <div class="event-details">
     <div class="detail-pill"><span class="icon">📅</span> <strong>16 April 2026</strong></div>
@@ -560,6 +583,7 @@
       <div class="radio-group" id="eventType">
         <div class="radio-opt"><input type="radio" name="eventType" value="Padel and cocktail evening" /><span class="radio-dot"></span><span class="radio-text">Padel and cocktail evening</span></div>
         <div class="radio-opt"><input type="radio" name="eventType" value="Cocktail evening only" /><span class="radio-dot"></span><span class="radio-text">Cocktail evening only</span></div>
+        <div class="radio-opt"><input type="radio" name="eventType" value="Both" /><span class="radio-dot"></span><span class="radio-text">Both</span></div>
       </div>
       <div class="error-msg" id="err-eventType">Please select an option</div>
     </div>
