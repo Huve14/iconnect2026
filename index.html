@@ -216,9 +216,10 @@
 
   .radio-opt, .check-opt {
     display: flex;
+    flex-direction: row;
     align-items: center;
     gap: 14px;
-    padding: 18px 20px;
+    padding: 16px 20px;
     background: var(--surface);
     border: 0.5px solid var(--border);
     border-radius: 4px;
@@ -227,7 +228,9 @@
     font-size: 14px;
     color: var(--text-muted);
     user-select: none;
-    line-height: 1;
+    line-height: 1.4;
+    min-height: 56px;
+    box-sizing: border-box;
   }
 
   .radio-opt:hover, .check-opt:hover {
@@ -238,15 +241,19 @@
   .radio-opt input, .check-opt input { display: none; }
 
   .radio-dot, .check-box {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    min-height: 20px;
     border: 0.5px solid var(--border-hover);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    flex-grow: 0;
     transition: border-color 0.2s;
+    margin-top: 0;
   }
 
   .check-box { border-radius: 3px; }
