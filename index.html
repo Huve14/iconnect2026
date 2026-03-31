@@ -228,9 +228,18 @@
     font-size: 14px;
     color: var(--text-muted);
     user-select: none;
-    line-height: 1.4;
-    min-height: 56px;
+    line-height: 1;
+    min-height: 52px;
     box-sizing: border-box;
+  }
+
+  .radio-text {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1;
+    color: inherit;
+    display: inline-block;
+    vertical-align: middle;
   }
 
   .radio-opt:hover, .check-opt:hover {
@@ -538,9 +547,9 @@
   <div class="field">
     <label>Will you be attending? <span class="required">*</span></label>
     <div class="radio-group" id="attending">
-      <label class="radio-opt"><input type="radio" name="attending" value="Yes" /> <span class="radio-dot"></span> Yes, I will attend</label>
-      <label class="radio-opt"><input type="radio" name="attending" value="No" /> <span class="radio-dot"></span> No, I cannot attend</label>
-    </div>
+        <div class="radio-opt"><input type="radio" name="attending" value="Yes" /><span class="radio-dot"></span><span class="radio-text">Yes, I will attend</span></div>
+        <div class="radio-opt"><input type="radio" name="attending" value="No" /><span class="radio-dot"></span><span class="radio-text">No, I cannot attend</span></div>
+      </div>
     <div class="error-msg" id="err-attending">Please select an option</div>
   </div>
 
@@ -549,8 +558,8 @@
     <div class="field">
       <label>Will you be joining us for Padel or just the event? <span class="required">*</span></label>
       <div class="radio-group" id="eventType">
-        <label class="radio-opt"><input type="radio" name="eventType" value="Padel and cocktail evening" /> <span class="radio-dot"></span> Padel and cocktail evening</label>
-        <label class="radio-opt"><input type="radio" name="eventType" value="Cocktail evening only" /> <span class="radio-dot"></span> Cocktail evening only</label>
+        <div class="radio-opt"><input type="radio" name="eventType" value="Padel and cocktail evening" /><span class="radio-dot"></span><span class="radio-text">Padel and cocktail evening</span></div>
+        <div class="radio-opt"><input type="radio" name="eventType" value="Cocktail evening only" /><span class="radio-dot"></span><span class="radio-text">Cocktail evening only</span></div>
       </div>
       <div class="error-msg" id="err-eventType">Please select an option</div>
     </div>
@@ -596,12 +605,12 @@
     <div class="field">
       <label>Please select all that apply</label>
       <div class="checkbox-group" id="dietary">
-        <label class="check-opt"><input type="checkbox" value="Vegetarian" /> <span class="check-box"></span> Vegetarian</label>
-        <label class="check-opt"><input type="checkbox" value="Vegan" /> <span class="check-box"></span> Vegan</label>
-        <label class="check-opt"><input type="checkbox" value="Kosher" /> <span class="check-box"></span> Kosher</label>
-        <label class="check-opt"><input type="checkbox" value="Halal" /> <span class="check-box"></span> Halal</label>
-        <label class="check-opt"><input type="checkbox" value="Gluten-free" /> <span class="check-box"></span> Gluten-free</label>
-        <label class="check-opt"><input type="checkbox" value="None" /> <span class="check-box"></span> None</label>
+        <div class="check-opt"><input type="checkbox" value="Vegetarian" /><span class="check-box"></span><span class="radio-text">Vegetarian</span></div>
+        <div class="check-opt"><input type="checkbox" value="Vegan" /><span class="check-box"></span><span class="radio-text">Vegan</span></div>
+        <div class="check-opt"><input type="checkbox" value="Kosher" /><span class="check-box"></span><span class="radio-text">Kosher</span></div>
+        <div class="check-opt"><input type="checkbox" value="Halal" /><span class="check-box"></span><span class="radio-text">Halal</span></div>
+        <div class="check-opt"><input type="checkbox" value="Gluten-free" /><span class="check-box"></span><span class="radio-text">Gluten-free</span></div>
+        <div class="check-opt"><input type="checkbox" value="None" /><span class="check-box"></span><span class="radio-text">None</span></div>
       </div>
     </div>
 
