@@ -590,33 +590,7 @@
     </div>
 
     <!-- Attendee Count -->
-    <div class="section-label">Group size</div>
-
-    <div class="field">
-      <label>How many people from your organisation will be attending? <span class="required">*</span></label>
-      <input type="hidden" id="attendeeCount" value="" />
-      <div class="custom-select" id="attendeeCountSelect">
-        <div class="cs-trigger" id="attendeeCountTrigger">
-          <span id="attendeeCountLabel">— Select number —</span>
-          <svg width="12" height="8" viewBox="0 0 12 8" fill="none"><path d="M1 1l5 5 5-5" stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round"/></svg>
-        </div>
-        <div class="cs-options" id="attendeeCountOptions">
-          <div class="cs-option" data-value="">— Select number —</div>
-          <div class="cs-option" data-value="none">None</div>
-          <div class="cs-option" data-value="1">1 person</div>
-          <div class="cs-option" data-value="2">2 people</div>
-          <div class="cs-option" data-value="3">3 people</div>
-          <div class="cs-option" data-value="4">4 people</div>
-          <div class="cs-option" data-value="5">5 people</div>
-          <div class="cs-option" data-value="6">6 people</div>
-          <div class="cs-option" data-value="7">7 people</div>
-          <div class="cs-option" data-value="8">8 people</div>
-          <div class="cs-option" data-value="9">9 people</div>
-          <div class="cs-option" data-value="10">10 people</div>
-        </div>
-      </div>
-      <div class="error-msg" id="err-attendeeCount">Please select how many people are attending</div>
-    </div>
+    <input type="hidden" id="attendeeCount" value="none" />
 
     <!-- Dynamic Name Fields -->
     <div id="attendee-names-wrap" style="display:none;">
