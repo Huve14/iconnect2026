@@ -719,6 +719,10 @@
             <input type="text" id="sn-${i}" placeholder="Surname" />
           </div>
         </div>
+        <div class="field" style="margin-top:14px;margin-bottom:0;">
+          <label>Email Address</label>
+          <input type="email" id="em-${i}" placeholder="e.g. name@company.co.za" />
+        </div>
       `;
       container.appendChild(block);
     }
@@ -755,6 +759,18 @@
       if (fn || sn) names.push(`${fn} ${sn}`.trim());
     }
     return names;
+  }
+
+  function getAttendeeEmails() {
+    const val = document.getElementById('attendeeCount').value;
+    if (!val || val === 'none') return [];
+    const n = parseInt(val) || 0;
+    const emails = [];
+    for (let i = 1; i <= n; i++) {
+      const em = (document.getElementById('em-' + i)?.value || '').trim();
+      emails.push(em || 'N/A');
+    }
+    return emails;
   }
 
   // ── Submit ──
@@ -804,6 +820,8 @@
     const count = document.getElementById('attendeeCount').value || '0';
     const countDisplay = count === 'none' ? 'None' : count;
 
+    const attendeeEmails = attending === 'Yes' ? getAttendeeEmails() : [];
+
     const payload = {
       fullName,
       email,
@@ -812,6 +830,7 @@
       eventType,
       attendeeCount: countDisplay,
       attendeeNames: attendeeNames.join(' | '),
+      attendeeEmails: attendeeEmails.join(' | '),
       dietary,
       timestamp: new Date().toLocaleString('en-ZA', { timeZone: 'Africa/Johannesburg' })
     };
