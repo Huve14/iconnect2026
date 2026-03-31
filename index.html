@@ -498,6 +498,7 @@
       <label>How many people from your organisation will be attending? <span class="required">*</span></label>
       <select id="attendeeCount">
         <option value="">— Select number —</option>
+        <option value="none">None / Prefer not to say</option>
         <option value="1">1 person</option>
         <option value="2">2 people</option>
         <option value="3">3 people</option>
@@ -583,12 +584,13 @@
 
   // ── Dynamic attendee name fields ──
   document.getElementById('attendeeCount').addEventListener('change', function () {
-    const n = parseInt(this.value);
+    const val = this.value;
+    const n = parseInt(val);
     const wrap = document.getElementById('attendee-names-wrap');
     const container = document.getElementById('attendee-names');
     container.innerHTML = '';
 
-    if (!n) { wrap.style.display = 'none'; return; }
+    if (!val || val === 'none') { wrap.style.display = 'none'; return; }
     wrap.style.display = 'block';
 
     for (let i = 1; i <= n; i++) {
@@ -625,7 +627,9 @@
 
   // ── Build attendee names string ──
   function getAttendeeNames() {
-    const n = parseInt(document.getElementById('attendeeCount').value) || 0;
+    const val = document.getElementById('attendeeCount').value;
+    if (!val || val === 'none') return [];
+    const n = parseInt(val) || 0;
     const names = [];
     for (let i = 1; i <= n; i++) {
       const fn = (document.getElementById('fn-' + i)?.value || '').trim();
@@ -656,7 +660,7 @@
       showError('eventType', !eventType); if (!eventType) valid = false;
       showError('attendeeCount', !count); if (!count) valid = false;
 
-      if (count) {
+      if (count && count !== 'none') {
         const n = parseInt(count);
         for (let i = 1; i <= n; i++) {
           const fn = document.getElementById('fn-' + i)?.value.trim();
@@ -680,6 +684,7 @@
     const attendeeNames = attending === 'Yes' ? getAttendeeNames() : [];
     const eventType = document.querySelector('input[name="eventType"]:checked')?.value || 'N/A';
     const count = document.getElementById('attendeeCount').value || '0';
+    const countDisplay = count === 'none' ? 'None' : count;
 
     const payload = {
       fullName,
@@ -687,7 +692,7 @@
       cell,
       attending,
       eventType,
-      attendeeCount: count,
+      attendeeCount: countDisplay,
       attendeeNames: attendeeNames.join(' | '),
       dietary,
       timestamp: new Date().toLocaleString('en-ZA', { timeZone: 'Africa/Johannesburg' })
