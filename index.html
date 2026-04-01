@@ -4,626 +4,199 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>iConnect 2026 — RSVP</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --blue: #0072CE;
-    --blue-dark: #005BA3;
-    --green: #4CAF50;
-    --text: #1a1a1a;
-    --text-muted: #555;
-    --text-light: #888;
-    --bg: #F7F5F0;
-    --bg-card: #ffffff;
-    --border: #e0dbd0;
-    --border-focus: #0072CE;
-    --error: #D32F2F;
-    --divider: #d0ccc4;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: 'Open Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    line-height: 1.6;
-  }
-
-  /* ── Header ── */
-  .header {
-    background: #fff;
-    padding: 16px 24px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .header-logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  /* CMI spiral SVG logo */
-  .cmi-logo-wrap {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .header-brand {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    color: var(--blue);
-    letter-spacing: 0.01em;
-  }
-
-  .header-divider {
-    width: 1px;
-    height: 28px;
-    background: #ccc;
-    margin: 0 4px;
-  }
-
-  .header-international {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 400;
-    color: var(--text-muted);
-    letter-spacing: 0.01em;
-  }
-
-  /* ── Hero ── */
-  .hero {
-    background: linear-gradient(180deg, #f0ece3 0%, #e8e2d6 100%);
-    text-align: center;
-    padding: 48px 24px 40px;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background-image: 
-      radial-gradient(circle at 15% 85%, rgba(0,114,206,0.04) 0%, transparent 50%),
-      radial-gradient(circle at 85% 15%, rgba(76,175,80,0.04) 0%, transparent 50%);
-    pointer-events: none;
-  }
-
-  .hero-iconnect-svg {
-    margin-bottom: 8px;
-    padding: 0 12px;
-  }
-
-  .hero-johannesburg {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(20px, 5vw, 34px);
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 16px;
-    letter-spacing: -0.01em;
-  }
-
-  .hero-save {
-    font-family: 'Open Sans', sans-serif;
-    font-size: clamp(18px, 4vw, 26px);
-    font-weight: 300;
-    color: var(--text-muted);
-    margin-bottom: 16px;
-    font-style: italic;
-  }
-
-  .hero-desc {
-    font-size: 13px;
-    color: var(--text-muted);
-    max-width: 420px;
-    margin: 0 auto 24px;
-    line-height: 1.7;
-  }
-
-  .event-details {
-    display: inline-flex;
-    flex-direction: column;
-    gap: 4px;
-    text-align: center;
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--text);
-    margin-bottom: 8px;
-    line-height: 1.8;
-  }
-
-  .hero-footer-note {
-    font-size: 12px;
-    color: var(--text-light);
-    margin-top: 12px;
-    font-style: italic;
-  }
-
-  /* ── Form Card ── */
-  .form-wrap {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 32px 20px 60px;
-  }
-
-  .form-card {
-    background: var(--bg-card);
-    border-radius: 8px;
-    border: 1px solid var(--border);
-    padding: 32px 28px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-  }
-
-  .section-label {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--blue);
-    margin-bottom: 20px;
-    margin-top: 28px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid var(--blue);
-    display: block;
-  }
-
-  .section-label:first-child { margin-top: 0; }
-
-  .field { margin-bottom: 20px; }
-
-  .field label {
-    display: block;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    margin-bottom: 7px;
-  }
-
-  .field label .required { color: var(--blue); margin-left: 2px; }
-
-  .field input[type="text"],
-  .field input[type="email"],
-  .field input[type="tel"] {
-    width: 100%;
-    background: #fafaf8;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 12px 14px;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    color: var(--text);
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-
-  .field input:focus {
-    border-color: var(--border-focus);
-    box-shadow: 0 0 0 3px rgba(0,114,206,0.1);
-    background: #fff;
-  }
-
-  .field input.error { border-color: var(--error); }
-  .field input::placeholder { color: #bbb; }
-
-  /* ── Radio / Checkbox ── */
-  .radio-group, .checkbox-group {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-
-  .radio-opt, .check-opt {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 12px;
-    padding: 12px 16px;
-    background: #fafaf8;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    cursor: pointer;
-    transition: border-color 0.15s, background 0.15s;
-    font-size: 14px;
-    color: var(--text-muted);
-    user-select: none;
-    min-height: 48px;
-  }
-
-  .radio-opt:hover, .check-opt:hover {
-    border-color: var(--blue);
-    background: #f0f6ff;
-    color: var(--text);
-  }
-
-  .radio-opt input, .check-opt input { display: none; }
-
-  .radio-dot, .check-box {
-    width: 20px;
-    height: 20px;
-    min-width: 20px;
-    border: 2px solid #ccc;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    transition: border-color 0.15s;
-    background: #fff;
-  }
-
-  .check-box { border-radius: 3px; }
-
-  .radio-dot::after {
-    content: '';
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    background: var(--blue);
-    opacity: 0;
-    transition: opacity 0.15s;
-  }
-
-  .check-box::after {
-    content: '✓';
-    font-size: 12px;
-    color: var(--blue);
-    font-weight: 700;
-    opacity: 0;
-    transition: opacity 0.15s;
-  }
-
-  .radio-opt.selected, .check-opt.selected {
-    border-color: var(--blue);
-    background: #f0f6ff;
-    color: var(--text);
-  }
-
-  .radio-opt.selected .radio-dot,
-  .check-opt.selected .check-box { border-color: var(--blue); }
-
-  .radio-opt.selected .radio-dot::after,
-  .check-opt.selected .check-box::after { opacity: 1; }
-
-  .radio-text {
-    font-size: 14px;
-    color: inherit;
-    display: inline-block;
-  }
-
-  /* ── Attendee blocks ── */
-  .attendee-block {
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 18px;
-    margin-bottom: 12px;
-    background: #fafaf8;
-    animation: slideIn 0.2s ease;
-    border-left: 3px solid var(--blue);
-  }
-
-  @keyframes slideIn {
-    from { opacity: 0; transform: translateY(-6px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .attendee-num {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--blue);
-    margin-bottom: 12px;
-  }
-
-  .name-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-  }
-
-  @media (max-width: 480px) { .name-row { grid-template-columns: 1fr; } }
-  .name-row .field { margin-bottom: 0; }
-
-  /* ── Submit ── */
-  .submit-btn {
-    width: 100%;
-    padding: 16px;
-    background: var(--blue);
-    border: none;
-    border-radius: 4px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: #fff;
-    cursor: pointer;
-    transition: background 0.2s, transform 0.1s;
-    margin-top: 28px;
-  }
-
-  .submit-btn:hover { background: var(--blue-dark); }
-  .submit-btn:active { transform: scale(0.99); }
-  .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-
-  /* ── Success ── */
-  .success-screen {
-    display: none;
-    text-align: center;
-    padding: 60px 24px;
-    max-width: 500px;
-    margin: 0 auto;
-  }
-
-  .success-screen.show { display: block; }
-
-  .success-icon {
-    width: 64px;
-    height: 64px;
-    background: var(--blue);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 24px;
-    font-size: 26px;
-    color: #fff;
-  }
-
-  .success-screen h2 {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--text);
-    margin-bottom: 12px;
-  }
-
-  .success-screen p { font-size: 14px; color: var(--text-muted); line-height: 1.7; }
-
-  /* ── Error msg ── */
-  .error-msg {
-    font-size: 11px;
-    color: var(--error);
-    margin-top: 5px;
-    display: none;
-  }
-
-  .spinner {
-    display: inline-block;
-    width: 16px;
-    height: 16px;
-    border: 2px solid rgba(255,255,255,0.4);
-    border-top-color: #fff;
-    border-radius: 50%;
-    animation: spin 0.7s linear infinite;
-    vertical-align: middle;
-    margin-right: 8px;
-  }
-
-  @keyframes spin { to { transform: rotate(360deg); } }
-
-  .note-box {
-    background: #f0f6ff;
-    border: 1px solid #c0d8f0;
-    border-radius: 4px;
-    padding: 12px 16px;
-    font-size: 12px;
-    color: var(--text-muted);
-    margin-bottom: 24px;
-    line-height: 1.6;
-  }
-
-  .note-box strong { color: var(--blue); }
-
-  footer {
-    text-align: center;
-    padding: 20px;
-    font-size: 11px;
-    color: var(--text-light);
-    border-top: 1px solid var(--border);
-    background: #fff;
-  }
-
-  /* ── Custom Dropdown ── */
-  .custom-select { position: relative; width: 100%; }
-
-  .cs-trigger {
-    width: 100%;
-    background: #fafaf8;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 12px 14px;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 14px;
-    color: #bbb;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    user-select: none;
-  }
-
-  .cs-trigger:hover { border-color: var(--border-focus); }
-  .cs-trigger.open { border-color: var(--border-focus); box-shadow: 0 0 0 3px rgba(0,114,206,0.1); }
-  .cs-trigger.has-value { color: var(--text); }
-  .cs-trigger.error { border-color: var(--error); }
-  .cs-trigger svg { flex-shrink: 0; transition: transform 0.2s; }
-  .cs-trigger.open svg { transform: rotate(180deg); }
-
-  .cs-options {
-    display: none;
-    position: absolute;
-    top: calc(100% + 4px);
-    left: 0; right: 0;
-    background: #fff;
-    border: 1px solid var(--border-focus);
-    border-radius: 4px;
-    z-index: 100;
-    max-height: 260px;
-    overflow-y: auto;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  }
-
-  .cs-options.open { display: block; }
-
-  .cs-option {
-    padding: 11px 14px;
-    font-size: 14px;
-    color: var(--text-muted);
-    cursor: pointer;
-    transition: background 0.1s;
-  }
-
-  .cs-option:hover { background: #f0f6ff; color: var(--text); }
-  .cs-option.selected { color: var(--blue); font-weight: 600; background: #f0f6ff; }
-  .cs-option:first-child { color: #bbb; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --blue: #4A7DBF; --blue-dark: #3A6AAF; --blue-light: #EBF2FA;
+  --green: #8DC63F; --text: #2c2c2c; --text-muted: #666;
+  --text-light: #999; --bg: #F2EFE9; --bg-card: #ffffff;
+  --border: #DDD9D0; --error: #C0392B;
+}
+html { scroll-behavior: smooth; }
+body { font-family: 'Lato', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; line-height: 1.6; }
+
+.header { background: #fff; padding: 14px 28px; display: flex; align-items: center; gap: 14px; border-bottom: 1px solid var(--border); box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+.header-brand { font-family: 'Nunito', sans-serif; font-size: 16px; font-weight: 700; color: var(--blue); }
+.header-divider { width: 1px; height: 26px; background: #ccc; }
+.header-intl { font-family: 'Lato', sans-serif; font-size: 15px; font-weight: 300; color: var(--text-muted); }
+
+.hero { background: var(--bg); text-align: center; padding: 52px 24px 44px; }
+.iconnect-logo { display: block; margin: 0 auto 18px; width: 100%; max-width: 340px; height: auto; }
+.hero-city { font-family: 'Nunito', sans-serif; font-size: clamp(22px, 5vw, 32px); font-weight: 800; color: var(--text); margin-bottom: 10px; }
+.hero-save { font-family: 'Lato', sans-serif; font-size: clamp(16px, 3.5vw, 22px); font-weight: 300; font-style: italic; color: var(--text-muted); margin-bottom: 18px; }
+.hero-desc { font-size: 14px; color: var(--text-muted); max-width: 400px; margin: 0 auto 24px; line-height: 1.75; }
+.event-details { display: flex; flex-direction: column; gap: 2px; align-items: center; margin-bottom: 20px; }
+.event-details span { font-family: 'Nunito', sans-serif; font-size: 15px; font-weight: 700; color: var(--text); line-height: 1.9; }
+.hero-closing { font-size: 12.5px; font-style: italic; color: var(--text-light); max-width: 380px; margin: 0 auto; line-height: 1.7; }
+
+.form-outer { max-width: 580px; margin: 0 auto; padding: 28px 16px 64px; }
+.form-card { background: var(--bg-card); border-radius: 10px; border: 1px solid var(--border); padding: 32px 28px; box-shadow: 0 2px 16px rgba(0,0,0,0.07); }
+@media (max-width: 480px) { .form-card { padding: 24px 18px; } }
+
+.note-box { background: var(--blue-light); border: 1px solid #C5D9F0; border-radius: 6px; padding: 12px 16px; font-size: 13px; color: var(--text-muted); margin-bottom: 28px; line-height: 1.6; }
+.note-box strong { color: var(--blue); }
+
+.section-label { font-family: 'Nunito', sans-serif; font-size: 11px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue); display: block; margin-bottom: 18px; margin-top: 32px; padding-bottom: 8px; border-bottom: 2px solid var(--blue); }
+.section-label:first-of-type { margin-top: 0; }
+
+.field { margin-bottom: 20px; }
+.field label { display: block; font-family: 'Nunito', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 7px; }
+.field label .req { color: var(--blue); }
+.field input[type="text"], .field input[type="email"], .field input[type="tel"] { width: 100%; background: #FAFAF8; border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; font-family: 'Lato', sans-serif; font-size: 14px; color: var(--text); outline: none; transition: border-color 0.18s, box-shadow 0.18s; }
+.field input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(74,125,191,0.12); background: #fff; }
+.field input.error { border-color: var(--error); }
+.field input::placeholder { color: #C5C0B8; }
+
+.radio-group, .checkbox-group { display: flex; flex-direction: column; gap: 8px; }
+.radio-opt, .check-opt { display: flex; flex-direction: row; align-items: center; gap: 13px; padding: 13px 16px; background: #FAFAF8; border: 1px solid var(--border); border-radius: 6px; cursor: pointer; transition: border-color 0.15s, background 0.15s; user-select: none; min-height: 50px; }
+.radio-opt:hover, .check-opt:hover { border-color: var(--blue); background: var(--blue-light); }
+.radio-opt input, .check-opt input { display: none; }
+
+.radio-dot { width: 20px; height: 20px; min-width: 20px; border: 2px solid #BDB8B0; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #fff; transition: border-color 0.15s; }
+.check-box { width: 20px; height: 20px; min-width: 20px; border: 2px solid #BDB8B0; border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; background: #fff; transition: border-color 0.15s; }
+.radio-dot::after { content: ''; width: 9px; height: 9px; border-radius: 50%; background: var(--blue); opacity: 0; transition: opacity 0.15s; }
+.check-box::after { content: '✓'; font-size: 12px; font-weight: 700; color: var(--blue); opacity: 0; transition: opacity 0.15s; line-height: 1; }
+.radio-opt.selected, .check-opt.selected { border-color: var(--blue); background: var(--blue-light); }
+.radio-opt.selected .radio-dot, .check-opt.selected .check-box { border-color: var(--blue); }
+.radio-opt.selected .radio-dot::after, .check-opt.selected .check-box::after { opacity: 1; }
+.opt-text { font-family: 'Lato', sans-serif; font-size: 14px; color: var(--text); line-height: 1.3; }
+
+.attendee-block { border: 1px solid var(--border); border-left: 3px solid var(--blue); border-radius: 6px; padding: 18px; margin-bottom: 12px; background: #FAFAF8; animation: fadeUp 0.2s ease; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+.attendee-num { font-family: 'Nunito', sans-serif; font-size: 10px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin-bottom: 14px; }
+.name-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 480px) { .name-row { grid-template-columns: 1fr; } }
+.name-row .field { margin-bottom: 0; }
+
+.submit-btn { width: 100%; padding: 16px; background: var(--blue); border: none; border-radius: 6px; font-family: 'Nunito', sans-serif; font-size: 13px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: #fff; cursor: pointer; transition: background 0.18s, transform 0.1s; margin-top: 28px; }
+.submit-btn:hover { background: var(--blue-dark); }
+.submit-btn:active { transform: scale(0.99); }
+.submit-btn:disabled { opacity: 0.55; cursor: not-allowed; }
+
+.success-screen { display: none; text-align: center; padding: 80px 24px; max-width: 480px; margin: 0 auto; }
+.success-screen.show { display: block; }
+.success-icon { width: 68px; height: 68px; background: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 28px; color: #fff; }
+.success-screen h2 { font-family: 'Nunito', sans-serif; font-size: 28px; font-weight: 800; color: var(--text); margin-bottom: 12px; }
+.success-screen p { font-size: 15px; color: var(--text-muted); line-height: 1.8; }
+.success-screen strong { color: var(--blue); }
+
+.error-msg { font-size: 11px; color: var(--error); margin-top: 5px; display: none; }
+.spinner { display: inline-block; width: 15px; height: 15px; border: 2px solid rgba(255,255,255,0.4); border-top-color: #fff; border-radius: 50%; animation: spin 0.7s linear infinite; vertical-align: middle; margin-right: 8px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+footer { text-align: center; padding: 20px; font-size: 11px; color: var(--text-light); border-top: 1px solid var(--border); background: #fff; letter-spacing: 0.05em; }
 </style>
 </head>
 <body>
 
-<!-- ── Header ── -->
 <div class="header">
-  <div class="cmi-logo-wrap">
-    <!-- China Mobile spiral logo SVG -->
-    <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="18" cy="18" r="18" fill="#0072CE"/>
-      <path d="M18 6C11.4 6 6 11.4 6 18s5.4 12 12 12 12-5.4 12-12S24.6 6 18 6zm0 2c5.5 0 10 4.5 10 10S23.5 28 18 28 8 23.5 8 18 12.5 8 18 8z" fill="white" opacity="0.3"/>
-      <path d="M18 9c-2.8 0-5.2 1.3-6.9 3.3 1.2-.8 2.7-1.3 4.2-1.3 4.1 0 7.5 3.4 7.5 7.5 0 1.5-.5 3-1.3 4.2C23.7 21 25 18.8 25 16.5 25 12.4 21.9 9 18 9z" fill="white"/>
-      <path d="M18 12c-1.5 0-2.9.6-3.9 1.5.6-.3 1.3-.5 2-.5 2.8 0 5 2.2 5 5 0 .7-.2 1.4-.5 2 1-.9 1.5-2.3 1.5-3.8 0-2.3-1.9-4.2-4.1-4.2z" fill="white"/>
-      <circle cx="18" cy="21" r="2.5" fill="white"/>
-    </svg>
-    <span class="header-brand">China Mobile</span>
-    <div class="header-divider"></div>
-    <span class="header-international">International</span>
-  </div>
+  <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="19" cy="19" r="19" fill="#0072CE"/>
+    <path d="M19 5C11.3 5 5 11.3 5 19s6.3 14 14 14 14-6.3 14-14S26.7 5 19 5zm0 3c6.1 0 11 4.9 11 11S25.1 30 19 30 8 25.1 8 19 12.9 8 19 8z" fill="rgba(255,255,255,0.2)"/>
+    <path d="M19 10c-2.5 0-4.8 1-6.4 2.6 1.1-.7 2.4-1.1 3.9-1.1 4 0 7.2 3.2 7.2 7.2 0 1.5-.5 2.9-1.3 4C25 21.1 26 18.8 26 16.3 26 12.8 22.9 10 19 10z" fill="white"/>
+    <path d="M19 14c-1.3 0-2.5.5-3.4 1.4.5-.3 1.1-.4 1.8-.4 2.5 0 4.5 2 4.5 4.5 0 .7-.2 1.3-.5 1.9.9-.8 1.5-2 1.5-3.3C22.9 15.8 21.1 14 19 14z" fill="white"/>
+    <circle cx="19" cy="22.5" r="2.8" fill="white"/>
+  </svg>
+  <span class="header-brand">China Mobile</span>
+  <div class="header-divider"></div>
+  <span class="header-intl">International</span>
 </div>
 
-<!-- ── Hero ── -->
 <div class="hero">
-  <div class="hero-iconnect-svg">
-    <svg viewBox="0 0 500 120" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:420px;height:auto;display:block;margin:0 auto;">
-      <!-- i -->
-      <text x="10" y="95" font-family="Montserrat,Arial Black,sans-serif" font-weight="900" font-size="100" fill="#5B7DB1">i</text>
-      <!-- C -->
-      <text x="52" y="95" font-family="Montserrat,Arial Black,sans-serif" font-weight="900" font-size="100" fill="#5B7DB1">C</text>
-      <!-- Big green O circle -->
-      <circle cx="183" cy="56" r="48" fill="#8DC63F"/>
-      <!-- Left blue connector dot (inside green circle, left edge) -->
-      <circle cx="155" cy="56" r="12" fill="#5B7DB1"/>
-      <!-- Right blue connector dot (inside green circle, right edge) -->
-      <circle cx="211" cy="56" r="12" fill="#5B7DB1"/>
-      <!-- NNECT -->
-      <text x="232" y="95" font-family="Montserrat,Arial Black,sans-serif" font-weight="900" font-size="100" fill="#5B7DB1">NNECT</text>
-    </svg>
-  </div>
-  <div class="hero-johannesburg">Johannesburg 2026</div>
+  <!-- iCONNECT SVG logo: i + C + green-O-circle-with-dots + NNECT -->
+  <svg class="iconnect-logo" viewBox="0 0 380 95" xmlns="http://www.w3.org/2000/svg">
+    <!-- "i" -->
+    <text x="2" y="78" font-family="Arial Black,Helvetica Neue,sans-serif" font-weight="900" font-size="82" fill="#4A7DBF">i</text>
+    <!-- "C" -->
+    <text x="44" y="78" font-family="Arial Black,Helvetica Neue,sans-serif" font-weight="900" font-size="82" fill="#4A7DBF">C</text>
+    <!-- Green circle (the O) -->
+    <circle cx="158" cy="44" r="40" fill="#8DC63F"/>
+    <!-- Left blue dot inside circle -->
+    <circle cx="133" cy="44" r="11" fill="#4A7DBF"/>
+    <!-- Right blue dot inside circle -->
+    <circle cx="183" cy="44" r="11" fill="#4A7DBF"/>
+    <!-- "NNECT" -->
+    <text x="198" y="78" font-family="Arial Black,Helvetica Neue,sans-serif" font-weight="900" font-size="82" fill="#4A7DBF">NNECT</text>
+  </svg>
+
+  <div class="hero-city">Johannesburg 2026</div>
   <div class="hero-save">Save The Date</div>
-  <div class="hero-desc">
-    You are warmly invited to attend the iConnect 2026. Padel and Cocktail Evening, a gathering designed to bring partners together, share ideas and build connections.
-  </div>
+  <div class="hero-desc">You are warmly invited to attend the iConnect 2026. Padel and Cocktail Evening, a gathering designed to bring partners together, share ideas and build connections.</div>
   <div class="event-details">
     <span>Date: 16th April 2026</span>
-    <span>Padel: 2-5 PM</span>
+    <span>Padel: 2–5 PM</span>
     <span>Cocktail: Start 6 PM</span>
     <span>Venue: TBC</span>
   </div>
-  <div class="hero-footer-note">We look forward to your presence and hope you can join us for an inspiring and enjoyable experience.</div>
+  <p class="hero-closing">We look forward to your presence and hope you can join us for an inspiring and enjoyable experience.</p>
 </div>
 
-<!-- ── Form ── -->
-<div class="form-wrap" id="form-wrap">
+<div class="form-outer" id="form-wrap">
   <div class="form-card">
-
-    <div class="note-box">
-      <strong>RSVP:</strong> Please complete all required fields marked <strong style="color:var(--blue)">*</strong>. This form submits securely to our records.
-    </div>
+    <div class="note-box"><strong>RSVP:</strong> Please complete all required fields marked <strong>*</strong>. This form submits securely to our records.</div>
 
     <span class="section-label">Your details</span>
-
     <div class="field">
-      <label>Full Name <span class="required">*</span></label>
+      <label>Full Name <span class="req">*</span></label>
       <input type="text" id="fullName" placeholder="e.g. Thabo Dlamini" />
       <div class="error-msg" id="err-fullName">Please enter your full name</div>
     </div>
-
     <div class="field">
-      <label>Email Address <span class="required">*</span></label>
+      <label>Email Address <span class="req">*</span></label>
       <input type="email" id="email" placeholder="e.g. thabo@company.co.za" />
       <div class="error-msg" id="err-email">Please enter a valid email address</div>
     </div>
-
     <div class="field">
-      <label>Cell Number <span class="required">*</span></label>
+      <label>Cell Number <span class="req">*</span></label>
       <input type="tel" id="cell" placeholder="e.g. 082 000 0000" />
       <div class="error-msg" id="err-cell">Please enter your cell number</div>
     </div>
 
     <span class="section-label">Attendance</span>
-
     <div class="field">
-      <label>Will you be attending? <span class="required">*</span></label>
+      <label>Will you be attending? <span class="req">*</span></label>
       <div class="radio-group" id="attending">
-        <div class="radio-opt"><input type="radio" name="attending" value="Yes" /><span class="radio-dot"></span><span class="radio-text">Yes, I will attend</span></div>
-        <div class="radio-opt"><input type="radio" name="attending" value="No" /><span class="radio-dot"></span><span class="radio-text">No, I cannot attend</span></div>
+        <div class="radio-opt"><input type="radio" name="attending" value="Yes" /><span class="radio-dot"></span><span class="opt-text">Yes, I will attend</span></div>
+        <div class="radio-opt"><input type="radio" name="attending" value="No" /><span class="radio-dot"></span><span class="opt-text">No, I cannot attend</span></div>
       </div>
       <div class="error-msg" id="err-attending">Please select an option</div>
     </div>
 
     <div id="attending-details" style="display:none;">
-
       <div class="field">
-        <label>Will you be joining us for Padel or just the event? <span class="required">*</span></label>
+        <label>Will you be joining us for Padel or just the event? <span class="req">*</span></label>
         <div class="radio-group" id="eventType">
-          <div class="radio-opt"><input type="radio" name="eventType" value="Padel" /><span class="radio-dot"></span><span class="radio-text">Padel</span></div>
-          <div class="radio-opt"><input type="radio" name="eventType" value="Cocktail evening only" /><span class="radio-dot"></span><span class="radio-text">Cocktail evening only</span></div>
-          <div class="radio-opt"><input type="radio" name="eventType" value="Both" /><span class="radio-dot"></span><span class="radio-text">Both</span></div>
+          <div class="radio-opt"><input type="radio" name="eventType" value="Padel" /><span class="radio-dot"></span><span class="opt-text">Padel</span></div>
+          <div class="radio-opt"><input type="radio" name="eventType" value="Cocktail evening only" /><span class="radio-dot"></span><span class="opt-text">Cocktail evening only</span></div>
+          <div class="radio-opt"><input type="radio" name="eventType" value="Both" /><span class="radio-dot"></span><span class="opt-text">Both</span></div>
         </div>
         <div class="error-msg" id="err-eventType">Please select an option</div>
       </div>
 
       <input type="hidden" id="attendeeCount" value="none" />
-
       <div id="attendee-names-wrap" style="display:none;">
         <span class="section-label">Attendee names</span>
         <div id="attendee-names"></div>
       </div>
 
       <span class="section-label">Dietary requirements</span>
-
       <div class="field">
         <label>Please select all that apply</label>
         <div class="checkbox-group" id="dietary">
-          <div class="check-opt"><input type="checkbox" value="Vegetarian" /><span class="check-box"></span><span class="radio-text">Vegetarian</span></div>
-          <div class="check-opt"><input type="checkbox" value="Vegan" /><span class="check-box"></span><span class="radio-text">Vegan</span></div>
-          <div class="check-opt"><input type="checkbox" value="Kosher" /><span class="check-box"></span><span class="radio-text">Kosher</span></div>
-          <div class="check-opt"><input type="checkbox" value="Halal" /><span class="check-box"></span><span class="radio-text">Halal</span></div>
-          <div class="check-opt"><input type="checkbox" value="Gluten-free" /><span class="check-box"></span><span class="radio-text">Gluten-free</span></div>
-          <div class="check-opt"><input type="checkbox" value="None" /><span class="check-box"></span><span class="radio-text">None</span></div>
+          <div class="check-opt"><input type="checkbox" value="Vegetarian" /><span class="check-box"></span><span class="opt-text">Vegetarian</span></div>
+          <div class="check-opt"><input type="checkbox" value="Vegan" /><span class="check-box"></span><span class="opt-text">Vegan</span></div>
+          <div class="check-opt"><input type="checkbox" value="Kosher" /><span class="check-box"></span><span class="opt-text">Kosher</span></div>
+          <div class="check-opt"><input type="checkbox" value="Halal" /><span class="check-box"></span><span class="opt-text">Halal</span></div>
+          <div class="check-opt"><input type="checkbox" value="Gluten-free" /><span class="check-box"></span><span class="opt-text">Gluten-free</span></div>
+          <div class="check-opt"><input type="checkbox" value="None" /><span class="check-box"></span><span class="opt-text">None</span></div>
         </div>
       </div>
-
     </div>
 
     <button class="submit-btn" id="submitBtn" onclick="submitForm()">Confirm RSVP</button>
-
   </div>
 </div>
 
-<!-- ── Success Screen ── -->
 <div class="success-screen" id="success-screen">
   <div class="success-icon">✓</div>
   <h2>You're confirmed!</h2>
@@ -631,22 +204,17 @@
   <strong>16 April 2026 · Padel 2–5 PM · Cocktails from 6 PM</strong></p>
 </div>
 
-<footer>
-  iConnect 2026 · China Mobile International · Padel & Cocktail Evening · Johannesburg
-</footer>
+<footer>iConnect 2026 &nbsp;·&nbsp; China Mobile International &nbsp;·&nbsp; Johannesburg</footer>
 
 <script>
-  // ── IMPORTANT: Replace this URL after setting up your Google Apps Script ──
   const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycby92AggULc45JPcGax7iCfhfW7h5aJ2BOTYuj4oGTDNaHqACR7jm7t1029v5An-5gnjnw/exec';
 
-  // ── Radio / Checkbox interactivity ──
   document.querySelectorAll('.radio-group').forEach(group => {
     group.querySelectorAll('.radio-opt').forEach(opt => {
       opt.addEventListener('click', () => {
         group.querySelectorAll('.radio-opt').forEach(o => o.classList.remove('selected'));
         opt.classList.add('selected');
         opt.querySelector('input').checked = true;
-
         if (group.id === 'attending') {
           const val = opt.querySelector('input').value;
           document.getElementById('attending-details').style.display = val === 'Yes' ? 'block' : 'none';
@@ -665,41 +233,6 @@
     });
   });
 
-  // ── Dynamic attendee name fields ──
-  // ── Custom dropdown for attendeeCount ──
-  const csTrigger = document.getElementById('attendeeCountTrigger');
-  const csOptions = document.getElementById('attendeeCountOptions');
-  const csInput = document.getElementById('attendeeCount');
-  const csLabel = document.getElementById('attendeeCountLabel');
-
-  csTrigger.addEventListener('click', () => {
-    csTrigger.classList.toggle('open');
-    csOptions.classList.toggle('open');
-  });
-
-  document.querySelectorAll('#attendeeCountOptions .cs-option').forEach(opt => {
-    opt.addEventListener('click', () => {
-      const val = opt.dataset.value;
-      const label = opt.textContent;
-      csInput.value = val;
-      csLabel.textContent = label;
-      csTrigger.classList.remove('open', 'error');
-      csTrigger.classList.toggle('has-value', !!val);
-      csOptions.classList.remove('open');
-      document.querySelectorAll('#attendeeCountOptions .cs-option').forEach(o => o.classList.remove('selected'));
-      opt.classList.add('selected');
-      // fire the change logic
-      handleAttendeeCountChange(val);
-    });
-  });
-
-  document.addEventListener('click', (e) => {
-    if (!document.getElementById('attendeeCountSelect').contains(e.target)) {
-      csTrigger.classList.remove('open');
-      csOptions.classList.remove('open');
-    }
-  });
-
   function handleAttendeeCountChange(val) {
     const n = parseInt(val);
     const wrap = document.getElementById('attendee-names-wrap');
@@ -713,53 +246,34 @@
       block.innerHTML = `
         <div class="attendee-num">Attendee ${i}${n > 1 ? ' of ' + n : ''}</div>
         <div class="name-row">
-          <div class="field">
-            <label>First Name <span class="required">*</span></label>
-            <input type="text" id="fn-${i}" placeholder="First name" />
-          </div>
-          <div class="field">
-            <label>Surname <span class="required">*</span></label>
-            <input type="text" id="sn-${i}" placeholder="Surname" />
-          </div>
+          <div class="field"><label>First Name <span class="req">*</span></label><input type="text" id="fn-${i}" placeholder="First name" /></div>
+          <div class="field"><label>Surname <span class="req">*</span></label><input type="text" id="sn-${i}" placeholder="Surname" /></div>
         </div>
         <div class="field" style="margin-top:14px;margin-bottom:0;">
           <label>Email Address</label>
           <input type="email" id="em-${i}" placeholder="e.g. name@company.co.za" />
-        </div>
-      `;
+        </div>`;
       container.appendChild(block);
     }
   }
 
-  // attendeeCount change handled by handleAttendeeCountChange above
-
-  // ── Validation helpers ──
   function showError(id, show) {
     const el = document.getElementById('err-' + id);
     if (el) el.style.display = show ? 'block' : 'none';
     const field = document.getElementById(id);
     if (field) field.classList.toggle('error', show);
-    // also handle custom dropdown trigger
-    if (id === 'attendeeCount') {
-      const trigger = document.getElementById('attendeeCountTrigger');
-      if (trigger) trigger.classList.toggle('error', show);
-    }
   }
 
-  function validateEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  }
+  function validateEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
 
-  // ── Build attendee names string ──
   function getAttendeeNames() {
     const val = document.getElementById('attendeeCount').value;
     if (!val || val === 'none') return [];
-    const n = parseInt(val) || 0;
-    const names = [];
+    const n = parseInt(val) || 0, names = [];
     for (let i = 1; i <= n; i++) {
-      const fn = (document.getElementById('fn-' + i)?.value || '').trim();
-      const sn = (document.getElementById('sn-' + i)?.value || '').trim();
-      if (fn || sn) names.push(`${fn} ${sn}`.trim());
+      const fn = (document.getElementById('fn-'+i)?.value||'').trim();
+      const sn = (document.getElementById('sn-'+i)?.value||'').trim();
+      if (fn||sn) names.push(`${fn} ${sn}`.trim());
     }
     return names;
   }
@@ -767,21 +281,14 @@
   function getAttendeeEmails() {
     const val = document.getElementById('attendeeCount').value;
     if (!val || val === 'none') return [];
-    const n = parseInt(val) || 0;
-    const emails = [];
-    for (let i = 1; i <= n; i++) {
-      const em = (document.getElementById('em-' + i)?.value || '').trim();
-      emails.push(em || 'N/A');
-    }
+    const n = parseInt(val) || 0, emails = [];
+    for (let i = 1; i <= n; i++) emails.push((document.getElementById('em-'+i)?.value||'').trim()||'N/A');
     return emails;
   }
 
-  // ── Submit ──
   async function submitForm() {
     let valid = true;
     const attending = document.querySelector('input[name="attending"]:checked')?.value;
-
-    // Validate basic fields
     const fullName = document.getElementById('fullName').value.trim();
     const email = document.getElementById('email').value.trim();
     const cell = document.getElementById('cell').value.trim();
@@ -793,19 +300,15 @@
 
     if (attending === 'Yes') {
       const eventType = document.querySelector('input[name="eventType"]:checked')?.value;
-      const count = document.getElementById('attendeeCount').value;
       showError('eventType', !eventType); if (!eventType) valid = false;
-      showError('attendeeCount', !count); if (!count) valid = false;
-
+      const count = document.getElementById('attendeeCount').value;
       if (count && count !== 'none') {
         const n = parseInt(count);
         for (let i = 1; i <= n; i++) {
-          const fn = document.getElementById('fn-' + i)?.value.trim();
-          const sn = document.getElementById('sn-' + i)?.value.trim();
-          const fnEl = document.getElementById('fn-' + i);
-          const snEl = document.getElementById('sn-' + i);
-          if (fnEl) fnEl.classList.toggle('error', !fn);
-          if (snEl) snEl.classList.toggle('error', !sn);
+          const fn = document.getElementById('fn-'+i)?.value.trim();
+          const sn = document.getElementById('sn-'+i)?.value.trim();
+          document.getElementById('fn-'+i)?.classList.toggle('error', !fn);
+          document.getElementById('sn-'+i)?.classList.toggle('error', !sn);
           if (!fn || !sn) valid = false;
         }
       }
@@ -817,48 +320,29 @@
     btn.disabled = true;
     btn.innerHTML = '<span class="spinner"></span> Submitting...';
 
-    const dietary = Array.from(document.querySelectorAll('#dietary input:checked')).map(i => i.value).join(', ') || 'None';
-    const attendeeNames = attending === 'Yes' ? getAttendeeNames() : [];
-    const eventType = document.querySelector('input[name="eventType"]:checked')?.value || 'N/A';
-    const count = document.getElementById('attendeeCount').value || '0';
-    const countDisplay = count === 'none' ? 'None' : count;
-
-    const attendeeEmails = attending === 'Yes' ? getAttendeeEmails() : [];
+    const dietary = Array.from(document.querySelectorAll('#dietary input:checked')).map(i=>i.value).join(', ')||'None';
+    const attendeeNames = attending==='Yes' ? getAttendeeNames() : [];
+    const attendeeEmails = attending==='Yes' ? getAttendeeEmails() : [];
+    const eventType = document.querySelector('input[name="eventType"]:checked')?.value||'N/A';
+    const count = document.getElementById('attendeeCount').value||'0';
 
     const payload = {
-      fullName,
-      email,
-      cell,
-      attending,
-      eventType,
-      attendeeCount: countDisplay,
+      fullName, email, cell, attending, eventType,
+      attendeeCount: count==='none'?'None':count,
       attendeeNames: attendeeNames.join(' | '),
       attendeeEmails: attendeeEmails.join(' | '),
       dietary,
-      timestamp: new Date().toLocaleString('en-ZA', { timeZone: 'Africa/Johannesburg' })
+      timestamp: new Date().toLocaleString('en-ZA',{timeZone:'Africa/Johannesburg'})
     };
 
     try {
-      if (APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE') {
-        // Demo mode — show success without actually posting
-        console.log('Form data (demo mode):', payload);
-        await new Promise(r => setTimeout(r, 1000));
-      } else {
-        await fetch(APPS_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-      }
-
+      await fetch(APPS_SCRIPT_URL, { method:'POST', mode:'no-cors', headers:{'Content-Type':'application/json'}, body:JSON.stringify(payload) });
       document.getElementById('form-wrap').style.display = 'none';
       document.querySelector('.hero').style.display = 'none';
-      document.querySelector('.divider').style.display = 'none';
+      document.querySelector('.header').style.display = 'none';
       document.getElementById('success-screen').classList.add('show');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-
-    } catch (err) {
+      window.scrollTo({top:0,behavior:'smooth'});
+    } catch(err) {
       btn.disabled = false;
       btn.innerHTML = 'Confirm RSVP';
       alert('Submission failed. Please try again or contact the organiser.');
