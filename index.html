@@ -93,36 +93,31 @@ body { font-family: 'Lato', sans-serif; background: var(--bg); color: var(--text
 @keyframes spin { to { transform: rotate(360deg); } }
 footer { text-align: center; padding: 20px; font-size: 11px; color: var(--text-light); border-top: 1px solid var(--border); background: #fff; letter-spacing: 0.05em; }
 
-  .cm-logo-wrap {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 8px;
-  }
+  .cm-logo-wrap { display: flex; justify-content: center; margin-bottom: 16px; }
 </style>
 </head>
 <body>
 
 <div class="hero">
   <div class="cm-logo-wrap">
-    <!-- China Mobile International logo as SVG -->
-    <svg width="260" height="100" viewBox="0 0 260 100" xmlns="http://www.w3.org/2000/svg">
-      <!-- Wave/spiral icon -->
-      <g transform="translate(8, 10)">
-        <!-- Outer blue wave -->
-        <path d="M38 8 C20 8, 6 22, 6 40 C6 58, 20 72, 38 72 C56 72, 70 58, 70 40 C70 22, 56 8, 38 8Z" fill="none" stroke="#0099D8" stroke-width="0" />
-        <!-- Three wave stripes -->
-        <!-- Top wave - blue -->
-        <path d="M12 28 Q20 18, 30 22 Q40 26, 48 20 Q56 14, 64 18" fill="none" stroke="#0099D8" stroke-width="7" stroke-linecap="round"/>
-        <!-- Middle wave - blue -->
-        <path d="M8 40 Q16 30, 26 34 Q36 38, 44 32 Q52 26, 62 30 Q68 33, 70 38" fill="none" stroke="#0099D8" stroke-width="7" stroke-linecap="round"/>
-        <!-- Bottom wave - green -->
-        <path d="M10 53 Q18 43, 28 47 Q38 51, 46 45 Q54 39, 64 43 Q70 46, 72 52" fill="none" stroke="#6AB42D" stroke-width="7" stroke-linecap="round"/>
-        <!-- Bottom blue wave -->
-        <path d="M14 65 Q22 55, 32 59 Q42 63, 50 57 Q58 51, 66 56 Q70 59, 72 64" fill="none" stroke="#0099D8" stroke-width="7" stroke-linecap="round"/>
+    <svg width="280" height="90" viewBox="0 0 280 90" xmlns="http://www.w3.org/2000/svg">
+      <!-- China Mobile wave icon - 4 arc stripes in a fan -->
+      <g transform="translate(4, 4)">
+        <!-- The icon is built from 4 concentric arcs arranged like a fan -->
+        <!-- Each arc is a thick stroke curved path -->
+        <!-- Arc 1 - outermost - blue -->
+        <path d="M8,72 C8,72 12,28 52,8" fill="none" stroke="#0095D9" stroke-width="9" stroke-linecap="round"/>
+        <!-- Arc 2 - blue -->
+        <path d="M18,76 C18,76 24,38 58,20" fill="none" stroke="#0095D9" stroke-width="9" stroke-linecap="round"/>
+        <!-- Arc 3 - green -->
+        <path d="M30,78 C30,78 36,50 64,34" fill="none" stroke="#6ABF47" stroke-width="9" stroke-linecap="round"/>
+        <!-- Arc 4 - innermost - blue -->
+        <path d="M43,79 C43,79 48,60 70,48" fill="none" stroke="#0095D9" stroke-width="9" stroke-linecap="round"/>
       </g>
+      <!-- Chinese characters: 中国移动 -->
+      <text x="96" y="38" font-family="'Microsoft YaHei','PingFang SC','SimHei',sans-serif" font-weight="700" font-size="26" fill="#0095D9" letter-spacing="3">中国移动</text>
       <!-- China Mobile text -->
-      <text x="98" y="52" font-family="'Nunito','Arial',sans-serif" font-weight="700" font-size="22" fill="#0099D8" letter-spacing="-0.3">China Mobile</text>
-      <text x="98" y="74" font-family="'Nunito','Arial',sans-serif" font-weight="400" font-size="16" fill="#555" letter-spacing="0.5">International</text>
+      <text x="96" y="68" font-family="'Nunito','Arial',sans-serif" font-weight="700" font-size="22" fill="#0095D9" letter-spacing="0.5">China Mobile</text>
     </svg>
   </div>
         <div class="iconnect-text">
