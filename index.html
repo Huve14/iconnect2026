@@ -98,32 +98,10 @@
     pointer-events: none;
   }
 
-  .hero-iconnect {
-    font-family: 'Montserrat', sans-serif;
-    font-size: clamp(52px, 12vw, 88px);
-    font-weight: 800;
-    letter-spacing: -0.02em;
-    line-height: 1;
-    margin-bottom: 4px;
-    display: inline-flex;
-    align-items: center;
-    gap: 0;
+  .hero-iconnect-svg {
+    margin-bottom: 8px;
+    padding: 0 12px;
   }
-
-  .hero-iconnect .i-part { color: var(--blue); }
-  .hero-iconnect .dot-o {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 0.75em;
-    height: 0.75em;
-    background: var(--green);
-    border-radius: 50%;
-    margin: 0 1px;
-    position: relative;
-    top: 0.03em;
-  }
-  .hero-iconnect .connect-part { color: var(--blue); }
 
   .hero-johannesburg {
     font-family: 'Montserrat', sans-serif;
@@ -536,8 +514,20 @@
 
 <!-- ── Hero ── -->
 <div class="hero">
-  <div class="hero-iconnect">
-    <span class="i-part">i</span><span class="dot-o"></span><span class="connect-part">NNECT</span>
+  <div class="hero-iconnect-svg">
+    <svg viewBox="0 0 420 110" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:380px;height:auto;display:block;margin:0 auto;">
+      <!-- i -->
+      <text x="18" y="88" font-family="Montserrat,Arial,sans-serif" font-weight="800" font-size="95" fill="#5B7DB1">i</text>
+      <!-- C (left half arc of the O replaced by C shape) -->
+      <text x="62" y="88" font-family="Montserrat,Arial,sans-serif" font-weight="800" font-size="95" fill="#5B7DB1">C</text>
+      <!-- Green circle - the O -->
+      <circle cx="168" cy="52" r="44" fill="#7DB84A"/>
+      <!-- Small inner connector dots on the circle -->
+      <circle cx="145" cy="52" r="10" fill="#5B7DB1" opacity="0.85"/>
+      <circle cx="191" cy="52" r="10" fill="#5B7DB1" opacity="0.85"/>
+      <!-- NNECT -->
+      <text x="214" y="88" font-family="Montserrat,Arial,sans-serif" font-weight="800" font-size="95" fill="#5B7DB1">NNECT</text>
+    </svg>
   </div>
   <div class="hero-johannesburg">Johannesburg 2026</div>
   <div class="hero-save">Save The Date</div>
