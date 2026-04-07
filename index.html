@@ -367,36 +367,24 @@ footer{text-align:center;padding:20px;font-size:11px;letter-spacing:.08em;color:
       timestamp: new Date().toLocaleString('en-ZA',{timeZone:'Africa/Johannesburg'})
     };
 
-        try {
-      // Use no-cors fetch — always assume success since we can't read response
-      fetch(APPS_SCRIPT_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(payload)
-      });
-      // Don't await — just fire and move on to success screen immediately
-      setTimeout(() => {
-        document.getElementById('form-wrap').style.display = 'none';
-        document.querySelector('.hero').style.display = 'none';
-        document.getElementById('success-screen').classList.add('show');
-        window.scrollTo({top:0,behavior:'smooth'});
-      }, 800);
-    } catch(err) {
-      // Even on error show success — no-cors always triggers catch on network block
-      document.getElementById('form-wrap').style.display = 'none';
-      document.querySelector('.hero').style.display = 'none';
-      document.getElementById('success-screen').classList.add('show');
+        function showSuccess() {
+      const fw = document.getElementById('form-wrap');
+      const hero = document.querySelector('.hero');
+      const ss = document.getElementById('success-screen');
+      if (fw) fw.style.display = 'none';
+      if (hero) hero.style.display = 'none';
+      if (ss) ss.classList.add('show');
       window.scrollTo({top:0,behavior:'smooth'});
     }
+
+    // Fire and forget — no-cors can't be read, always show success
+    fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(payload)
+    }).then(() => showSuccess()).catch(() => showSuccess());
   }
 </script>
-</body>
-</html>
-
-</body>
-</html>
-</body>
-</html>
 </body>
 </html>
