@@ -184,6 +184,8 @@ footer{text-align:center;padding:20px;font-size:11px;letter-spacing:.08em;color:
     <div class="field"><label>Full Name <span class="req">*</span></label><input type="text" id="fullName" placeholder="e.g. Thabo Dlamini"/><div class="em" id="err-fullName">Please enter your full name</div></div>
     <div class="field"><label>Email Address <span class="req">*</span></label><input type="email" id="email" placeholder="e.g. thabo@company.co.za"/><div class="em" id="err-email">Please enter a valid email address</div></div>
     <div class="field"><label>Cell Number <span class="req">*</span></label><input type="tel" id="cell" placeholder="e.g. 082 000 0000"/><div class="em" id="err-cell">Please enter your cell number</div></div>
+    <div class="field"><label>Company <span class="req">*</span></label><input type="text" id="company" placeholder="e.g. Acme Corporation"/><div class="em" id="err-company">Please enter your company name</div></div>
+    <div class="field"><label>Job Title <span class="req">*</span></label><input type="text" id="jobTitle" placeholder="e.g. Sales Manager"/><div class="em" id="err-jobTitle">Please enter your job title</div></div>
 
     <span class="sec">Attendance</span>
     <div class="field">
@@ -328,6 +330,10 @@ footer{text-align:center;padding:20px;font-size:11px;letter-spacing:.08em;color:
     showError('fullName', !fullName); if (!fullName) valid = false;
     showError('email', !validateEmail(email)); if (!validateEmail(email)) valid = false;
     showError('cell', !cell); if (!cell) valid = false;
+    const company = document.getElementById('company').value.trim();
+    const jobTitle = document.getElementById('jobTitle').value.trim();
+    showError('company', !company); if (!company) valid = false;
+    showError('jobTitle', !jobTitle); if (!jobTitle) valid = false;
     showError('attending', !attending); if (!attending) valid = false;
 
     if (attending === 'Yes') {
@@ -359,7 +365,7 @@ footer{text-align:center;padding:20px;font-size:11px;letter-spacing:.08em;color:
     const count = document.getElementById('attendeeCount').value||'0';
 
     const payload = {
-      fullName, email, cell, attending, eventType,
+      fullName, email, cell, company, jobTitle, attending, eventType,
       attendeeCount: count==='none'?'None':count,
       attendeeNames: attendeeNames.join(' | '),
       attendeeEmails: attendeeEmails.join(' | '),
