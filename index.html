@@ -312,14 +312,6 @@ footer{text-align:center;padding:20px;font-size:11px;letter-spacing:.08em;color:
     return names;
   }
 
-  function getAttendeeEmails() {
-    const val = document.getElementById('attendeeCount').value;
-    if (!val || val === 'none') return [];
-    const n = parseInt(val) || 0, emails = [];
-    for (let i = 1; i <= n; i++) emails.push((document.getElementById('em-'+i)?.value||'').trim()||'N/A');
-    return emails;
-  }
-
   async function submitForm() {
     let valid = true;
     const attending = document.querySelector('input[name="attending"]:checked')?.value;
@@ -360,7 +352,6 @@ footer{text-align:center;padding:20px;font-size:11px;letter-spacing:.08em;color:
 
     const dietary = Array.from(document.querySelectorAll('#dietary input:checked')).map(i=>i.value).join(', ')||'None';
     const attendeeNames = attending==='Yes' ? getAttendeeNames() : [];
-    const attendeeEmails = attending==='Yes' ? getAttendeeEmails() : [];
     const eventType = document.querySelector('input[name="eventType"]:checked')?.value||'N/A';
     const count = document.getElementById('attendeeCount').value||'0';
 
@@ -368,7 +359,6 @@ footer{text-align:center;padding:20px;font-size:11px;letter-spacing:.08em;color:
       fullName, email, cell, company, jobTitle, attending, eventType,
       attendeeCount: count==='none'?'None':count,
       attendeeNames: attendeeNames.join(' | '),
-      attendeeEmails: attendeeEmails.join(' | '),
       dietary,
       timestamp: new Date().toLocaleString('en-ZA',{timeZone:'Africa/Johannesburg'})
     };
